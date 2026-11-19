@@ -1,0 +1,299 @@
+:root {
+  --bg: #14121a;
+  --card: #1f1c28;
+  --line: #2f2b3b;
+  --text: #f4f1fa;
+  --muted: #a19bb3;
+  --accent: #ffcc33;
+  --accent-text: #1a1400;
+  --radius: 22px;
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  /* Evita pull-to-refresh y zoom por doble toque mientras se pasa el celular. */
+  overscroll-behavior: none;
+  touch-action: manipulation;
+}
+
+body {
+  min-height: 100dvh;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+a {
+  color: inherit;
+}
+
+.screen {
+  min-height: 100dvh;
+  max-width: 520px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding: max(16px, env(safe-area-inset-top)) 20px max(20px, env(safe-area-inset-bottom));
+  gap: 16px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 40px;
+}
+
+.link {
+  background: none;
+  border: 0;
+  color: var(--muted);
+  font: inherit;
+  font-size: 15px;
+  padding: 8px 4px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 14px;
+}
+
+h1 {
+  font-size: clamp(28px, 8vw, 38px);
+  line-height: 1.1;
+  margin: 0;
+}
+
+.muted {
+  color: var(--muted);
+  margin: 0;
+  font-size: 16px;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  border: 0;
+  border-radius: var(--radius);
+  padding: 20px;
+  font: inherit;
+  font-size: 20px;
+  font-weight: 700;
+  background: var(--accent);
+  color: var(--accent-text);
+  cursor: pointer;
+  transition: transform 0.08s, opacity 0.2s;
+  text-decoration: none;
+  text-align: center;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn:disabled {
+  opacity: 0.35;
+}
+
+.btn.secondary {
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--line);
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* --- Home --- */
+.games {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.game-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  border-radius: var(--radius);
+  background: var(--card);
+  border: 1px solid var(--line);
+  text-decoration: none;
+}
+
+.game-card:active {
+  transform: scale(0.99);
+}
+
+.game-card .emoji {
+  font-size: 40px;
+}
+
+.game-card h2 {
+  margin: 0 0 4px;
+  font-size: 22px;
+}
+
+/* --- Setup --- */
+.field {
+  width: 100%;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.field label {
+  font-size: 18px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.stepper button {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.stepper button:disabled {
+  opacity: 0.25;
+}
+
+.stepper output {
+  min-width: 44px;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Juego --- */
+.player-tag {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.big-number {
+  font-size: clamp(90px, 32vw, 150px);
+  font-weight: 900;
+  line-height: 1;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+/* La tarjeta del secreto se ve IGUAL para impostor y para el resto
+   (mismo color, mismo tamaño) para que nadie lo note de reojo. */
+.secret {
+  width: 100%;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 28px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.secret .word {
+  font-size: clamp(30px, 10vw, 48px);
+  font-weight: 900;
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+}
+
+.drawing {
+  width: min(62vw, 260px);
+  aspect-ratio: 1;
+  border-radius: 16px;
+  background: #fff;
+  color: #14121a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 96px;
+  font-weight: 900;
+}
+
+.drawing svg {
+  width: 88%;
+  height: 88%;
+}
+
+.drawing .f {
+  fill: currentColor;
+  stroke: none;
+}
+
+.drawing .bg {
+  fill: #fff;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+  gap: 10px;
+  width: 100%;
+}
+
+.grid button {
+  aspect-ratio: 1;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--text);
+  font-size: 24px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.fade-in {
+  animation: fade 0.25s ease-out;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
