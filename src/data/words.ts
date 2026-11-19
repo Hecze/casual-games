@@ -12,8 +12,9 @@
 //  - Una sola palabra, salvo nombres propios que de verdad son dos.
 //  - Sin polémicas de relaciones o redes (ex, suegra, dejar en visto,
 //    horóscopo, reggaetón...): en la práctica no generan nada.
-//  - Sin políticos actuales con nombre propio, tragedias recientes, crimen
-//    organizado ni temas raciales.
+//  - Nada de fútbol ni de política: no todos siguen el fútbol, y la política
+//    genera discusiones que no son divertidas. Tampoco tragedias recientes,
+//    crimen organizado ni temas raciales.
 //  - El doble sentido nunca puede ser sexual.
 //
 // Descartadas: Polo, Codo, Violín, Pista, Camote, Huachafo (el doble sentido no
@@ -29,7 +30,7 @@ export const WORDS: string[] = [
   'Papa', // freír · puré · rellena · huancaína · Vaticano · León · Chiclayo · misa
   'Sol', // playa · calor · verano · moneda · bloqueador · sombra · dólar · Inti
   'Luna', // noche · estrellas · lobo · astronauta · llena · de miel · carro · vidrio
-  'Cancha', // fútbol · pelota · arco · pichanga · maíz · ceviche · salada · canchita
+  'Cancha', // maíz · tostada · ceviche · salada · canchita · cine · chela · picar
   'Santo', // cumpleaños · torta · regalo · iglesia · Santa Rosa · vela · saludo · santito
   'Sencillo', // monedas · cambio · cobrador · combi · fácil · simple · canción · humilde
   'Vuelto', // cambio · cobrador · cajero · monedas · combi · regresar · "ya volví" · propina
@@ -37,16 +38,15 @@ export const WORDS: string[] = [
   'Pasaje', // combi · cobrador · medio pasaje · avión · viaje · aeropuerto · calle · estudiante
   'Paradero', // combi · bajar · esquina · "baja" · micro · esperar · carro · desconocido
   'Cono', // tránsito · naranja · pista · helado · barquillo · Cono Norte · Comas · triángulo
-  'Papeleta', // multa · tránsito · policía · carro · coima · brevete · puntos · pagar
+  'Papeleta', // multa · tránsito · policía · carro · grúa · brevete · puntos · pagar
   'Carpeta', // colegio · salón · sentarse · mochila · archivo · computadora · documentos · PDF
   'Plumón', // pizarra · colores · marcador · escribir · plumas · almohada · casaca · edredón
   'Cartón', // caja · reciclaje · mudanza · título · universidad · graduación · diploma · huevos
-  'Once', // nota · aprobado · jalado · veinte · examen · fútbol · equipo · número
+  'Once', // nota · aprobado · jalado · veinte · examen · número · hora · libreta
   'Media', // pie · calcetín · zapato · lavar · mitad · promedio · nota · hora
   'Cartera', // mujer · bolso · plata · billetera · robo · maquillaje · llaves · celular
   'Vara', // palo · árbol · contactos · recomendación · trabajo · favor · amigo · conocido
   'Argolla', // anillo · matrimonio · oro · grupo · amigos · cerrado · exclusivo · arete
-  'Mermelada', // fresa · pan · desayuno · dulce · frasco · coima · periodista · prensa
   'Salado', // sal · mar · papitas · comida · mala suerte · piña · "qué salado" · agua
   'Piña', // fruta · pizza · tropical · jugo · mala suerte · "qué piña" · Bob Esponja · ácida
   'Palta', // verde · pan · guacamole · ensalada · vergüenza · roche · "qué palta" · pepa
@@ -63,7 +63,7 @@ export const WORDS: string[] = [
   'Pepa', // semilla · fruta · palta · guapo · "qué pepa" · pastilla · mango · durazno
   'Chapa', // apodo · puerta · llave · botella · tapa · beso · "chapar" · nombre
   'Jalar', // curso · examen · nota · cuerda · empujar · llevar · carro · tirar
-  'Bola', // pelota · fútbol · rumor · chisme · gente · montón · "corre la bola" · redonda
+  'Bola', // pelota · rumor · chisme · gente · montón · "corre la bola" · redonda · bolita
   'Chancho', // cerdo · chicharrón · gordo · colecta · chanchita · lodo · alcancía · comer
   'Llanta', // rueda · carro · pinchar · repuesto · gordito · barriga · rollo · bicicleta
   'Plancha', // ropa · arrugada · caliente · vergüenza · roche · "qué plancha" · ejercicio · abdomen
@@ -79,8 +79,7 @@ export const WORDS: string[] = [
   'Control', // remoto · televisor · canal · de lectura · examen · policía · videojuego · pilas
   'Terma', // agua caliente · ducha · baño · invierno · gas · eléctrica · termales · piscina
   'Grifo', // gasolina · carro · combustible · caño · agua · lavadero · cocina · grifero
-  'Hincha', // fútbol · estadio · camiseta · gritar · fanático · Alianza · la U · fastidiar
-  'Barra', // brava · estadio · bar · trago · chocolate · gimnasio · pesas · bombo
+  'Barra', // bar · trago · chocolate · gimnasio · pesas · cereal · metal · mostrador
   'Combi', // cobrador · pasaje · paradero · "al fondo hay sitio" · chofer · apretado · micro · ruta
 
   // --- Doble sentido general ---
@@ -98,7 +97,7 @@ export const WORDS: string[] = [
   'Corona', // rey · reina · princesa · cerveza · limón · COVID · oro · cabeza
   'Sirena', // mar · cola · pez · Ariel · ambulancia · bomberos · ruido · policía
   'Batería', // celular · cargador · por ciento · pila · instrumento · tambor · baterista · banda
-  'Tarjeta', // crédito · banco · deuda · roja · amarilla · árbitro · cumpleaños · Metropolitano
+  'Tarjeta', // crédito · banco · deuda · cumpleaños · Metropolitano · regalo · de presentación · cajero
   'Cadena', // oro · cuello · bicicleta · WhatsApp · reenviar · cárcel · tiendas · candado
   'Llave', // puerta · casa · candado · carro · inglesa · gasfitero · abrir · llavero
   'Estrella', // cielo · noche · famoso · Hollywood · mar · fugaz · deseo · cinco puntas
@@ -114,7 +113,7 @@ export const WORDS: string[] = [
   'Taza', // café · té · desayuno · baño · inodoro · jalar la cadena · plato · asa
   'Lengua', // boca · idioma · inglés · chismoso · larga · sabor · picante · morder
   'Ojo', // ver · ciego · lentes · "¡ojo!" · huracán · mal de ojo · pestaña · llorar
-  'Mano', // dedo · uña · saludar · ayuda · falta · Maradona · guante · anillo
+  'Mano', // dedo · uña · saludar · ayuda · guante · anillo · palma · "dar una mano"
   'Muñeca', // juguete · Barbie · niña · reloj · brazo · Chucky · pulsera · vestido
   'Pestaña', // ojo · rímel · maquillaje · navegador · Google · abrir · cerrar · larga
   'Pulgar', // dedo · like · arriba · Pulgarcito · mano · "ok" · celular · emoji
@@ -129,37 +128,29 @@ export const WORDS: string[] = [
   'Cuenta', // banco · plata · "la cuenta" · restaurante · Netflix · contar · número · contraseña
   'Crédito', // banco · tarjeta · deuda · cuotas · universidad · cursos · matrícula · préstamo
   'Visa', // tarjeta · pago · viaje · Estados Unidos · embajada · pasaporte · entrevista · sello
-  'Cámara', // foto · celular · video · selfie · Congreso · llanta · bicicleta · flash
+  'Cámara', // foto · celular · video · selfie · llanta · bicicleta · flash · fotógrafo
   'Radio', // música · locutor · noticias · carro · emisora · círculo · centro · hueso
   'Canal', // televisión · YouTube · suscribirse · control · agua · río · Panamá · cable
   'Cable', // televisión · Movistar · luz · enchufe · cargador · "se le cruzaron" · eléctrico · internet
   'Historia', // Instagram · curso · Perú · pasado · cuento · libro · profesor · 24 horas
-  'Estado', // WhatsApp · país · gobierno · soltero · casado · civil · ánimo · salud
+  'Estado', // WhatsApp · soltero · casado · civil · ánimo · salud · sólido · líquido
   'Perfil', // foto · Instagram · Facebook · rostro · cara · lado · criminal · LinkedIn
-  'Portero', // fútbol · arquero · guantes · gol · edificio · puerta · conserje · vigilante
-  'Volante', // carro · manejar · timón · fútbol · mediocampista · folleto · publicidad · papel
-  'Arco', // fútbol · gol · palo · flecha · Robin Hood · arcoíris · iris · tiro
-  'Palo', // madera · árbol · arco · fútbol · escoba · golf · millón · bastón
-  'Banca', // suplentes · fútbol · entrenador · banco · parque · sentarse · cambio · jugador
-  'Camiseta', // fútbol · selección · número · hincha · ropa · polo · "ponerse la camiseta" · equipo
-  'Copa', // trofeo · campeón · Mundial · América · vino · brindis · champán · Libertadores
-  'Penal', // fútbol · arquero · falta · penales · cárcel · derecho · código · delito
-  'Final', // examen · partido · campeón · serie · película · último · final feliz · trofeo
-  'Clásico', // la U · Alianza · Real Madrid · Barcelona · música · Mozart · carro antiguo · rival
-  'Cristal', // vidrio · ventana · Sporting · celeste · Rímac · cerveza · romper · transparente
-  'Alianza', // Lima · blanquiazul · Matute · La Victoria · anillo · boda · acuerdo · unión
-  'Universitario', // crema · la U · Monumental · estudiante · universidad · carné · cachimbo · ciclo
-  'Selección', // peruana · Mundial · fútbol · Gareca · elegir · escoger · jugadores · camiseta
+  'Volante', // carro · manejar · timón · chofer · folleto · publicidad · repartir · papel
+  'Arco', // flecha · Robin Hood · Cupido · arcoíris · iris · arquitectura · Arco del Triunfo · ceja
+  'Palo', // madera · árbol · escoba · golf · millón · bastón · fósforo · piñata
+  'Copa', // vino · brindis · champán · cristal · helado · árbol · trofeo · Año Nuevo
+  'Final', // examen · último · serie · película · final feliz · temporada · fin de ciclo · llegada
+  'Cristal', // vidrio · ventana · cerveza · romper · transparente · copa · zapatito de Cenicienta · espejo
   'Escalera', // subir · bajar · escalón · casa · edificio · póker · escalera de color · caerse
   'Tanque', // guerra · militar · agua · gasolina · carro · lleno · azotea · cisterna
-  'Escudo', // Perú · vicuña · bandera · guerrero · espada · club · Capitán América · proteger
+  'Escudo', // Perú · vicuña · bandera · guerrero · espada · Capitán América · proteger · armadura
   'Sello', // cara o sello · moneda · carta · correo · timbre · oficina · calidad · pasaporte
   'Cruz', // Jesús · iglesia · tumba · Cruz Roja · ambulancia · cruzar · collar · rosario
   'Rosario', // rezar · cuentas · abuela · iglesia · Virgen · Argentina · ciudad · nombre
   'Hábito', // costumbre · monja · cura · octubre · morado · Señor de los Milagros · rutina · vicio
   'Morado', // color · octubre · Señor de los Milagros · chicha · mazamorra · moretón · golpe · uva
   'Cajón', // instrumento · música criolla · afroperuano · mueble · ropa · ataúd · muerto · velorio
-  'Festejo', // danza · afroperuano · Chincha · celebrar · fiesta · cumpleaños · gol · alegría
+  'Festejo', // danza · afroperuano · Chincha · celebrar · fiesta · cumpleaños · cajón · alegría
   'Collar', // perro · joya · cuello · perlas · oro · gato · cadena · flores
   'Correa', // perro · pasear · cinturón · pantalón · reloj · cuero · castigo · papá
   'Cinturón', // pantalón · correa · karate · negro · seguridad · carro · abrocharse · hebilla
@@ -176,8 +167,7 @@ export const WORDS: string[] = [
   'Joker', // Batman · payaso · villano · comodín · cartas · risa · Gotham · maquillaje
   'Padrino', // bautizo · boda · ahijado · regalo · película · mafia · compadre · iglesia
   'Promoción', // colegio · fiesta de promo · quinto año · graduación · oferta · descuento · tienda · 2x1
-  'Paro', // huelga · transportistas · combis · marcha · cardíaco · corazón · desempleado · protesta
-  'Payaso', // circo · nariz roja · globos · It · miedo · cumpleaños · Congreso · chiste
+  'Payaso', // circo · nariz roja · globos · It · miedo · cumpleaños · chiste · maquillaje
   'Zombie', // muerto · cerebro · The Walking Dead · desvelado · sueño · examen · Halloween · apocalipsis
   'Bruja', // escoba · sombrero · Halloween · hechizo · gato negro · caldero · Blancanieves · verruga
   'Diablo', // infierno · cuernos · rojo · tridente · diablada · Puno · travieso · ají
@@ -192,8 +182,8 @@ export const WORDS: string[] = [
 
   // --- Animales con más de una lectura ---
   'León', // rey · selva · melena · rugir · Papa · Simba · Leo · zoológico
-  'Tigre', // rayas · selva · Gareca · leche de tigre · ceviche · Winnie Pooh · naranja · zoológico
-  'Pulga', // perro · picar · rascarse · Messi · Argentina · chiquito · saltar · mercado de pulgas
+  'Tigre', // rayas · selva · leche de tigre · ceviche · Winnie Pooh · naranja · zoológico · rugir
+  'Pulga', // perro · picar · rascarse · chiquito · saltar · mercado de pulgas · gato · antipulgas
   'Burro', // orejas · Shrek · tonto · bruto · carga · juego de cartas · cola · terco
   'Serpiente', // veneno · cobra · Adán · Eva · manzana · traidor · víbora · lengua
   'Conejo', // zanahoria · orejas · Pascua · huevos · mago · sombrero · Bad Bunny · Bugs Bunny
@@ -212,7 +202,7 @@ export const WORDS: string[] = [
   'Lince', // distrito · Risso · felino · gato · montés · ojos · ágil · salvaje
   'Ventanilla', // distrito · Callao · banco · cajero · carro · bajar la luna · atención · cola
   'Independencia', // 28 de julio · San Martín · libertad · desfile · distrito · Mega Plaza · mudarse · solo
-  'Victoria', // triunfo · ganar · Alianza · Matute · Gamarra · distrito · nombre · campeón
+  'Victoria', // triunfo · ganar · Gamarra · distrito · nombre · campeón · celebrar · medalla
   'Magdalena', // llorar · distrito · mar · Biblia · María · nombre · Pueblo Libre · iglesia
   'Barranco', // distrito · bohemio · Puente de los Suspiros · bajada de baños · precipicio · abismo · malecón · bares
   'Surco', // distrito · pituco · Jockey · Higuereta · arado · tierra · chacra · sembrar
@@ -227,13 +217,11 @@ export const WORDS: string[] = [
   // --- Personajes que también son otra cosa ---
   'Mario', // Bros · hongo · Luigi · princesa · Nintendo · Vargas Llosa · Nobel · libro
   'Túpac', // Amaru · rebelión · inca · Cusco · rapero · Shakur · hip hop · caballos
-  'Pizarro', // conquistador · Atahualpa · España · Cajamarca · Claudio · Bayern · gol · fundación de Lima
+  'Pizarro', // conquistador · Atahualpa · España · Cajamarca · caballo · oro · fundación de Lima · armadura
   'Grau', // Huáscar · almirante · héroe · avenida · billete · combate · Angamos · mar
   'Inca', // imperio · Cusco · Machu Picchu · Atahualpa · Inca Kola · gaseosa · quechua · sol
   'Inti', // sol · inca · dios · Raymi · moneda · Cusco · junio · Sacsayhuamán
-  'Cueva', // Christian · Aladino · Selección · oscura · murciélago · piedra · caverna · hombre
-  'Guerrero', // Paolo · Selección · delantero · gol · espada · batalla · guerra · Esto es Guerra
-  'Cristiano', // Ronaldo · CR7 · "siuuu" · Portugal · Real Madrid · iglesia · religión · Jesús
+  'Cueva', // oscura · murciélago · cavernícola · Aladino · piedra · oso · Batman · eco
   'Claude', // inteligencia artificial · chat · Anthropic · tarea · nombre · francés · Monet · robot
   'Titanic', // barco · iceberg · Jack · Rose · puerta · hundirse · película · Leonardo
   'Among Us', // impostor · nave · tripulantes · votar · sospechoso · videojuego · rojo · "sus"
@@ -250,14 +238,8 @@ export const WORDS: string[] = [
   'Matrimonio', // boda · anillo · iglesia · novia · castigo · amor · divorcio · fiesta
   'Pintor', // cuadro · pincel · Picasso · arte · brocha · pared · Hitler · museo
   'Pisco', // sour · chileno · uva · Ica · chilcano · trago · botija · Perú
-  'Congreso', // congresistas · leyes · votar · circo · sueldo · dormir · vacancia · Plaza Bolívar
-  'Elecciones', // votar · ONPE · cédula · multa · candidatos · debate · segunda vuelta · presidente
-  'VAR', // árbitro · revisar · pantalla · robo · gol · anulado · fútbol · polémica
-  'Coima', // policía · tránsito · papeleta · "para la gaseosa" · soborno · corrupción · "arreglemos" · sol
   'Halloween', // disfraz · calabaza · dulces · Canción Criolla · bruja · 31 de octubre · gringo · miedo
-  'Rolex', // reloj · lujo · presidenta · escándalo · oro · caro · Suiza · prestado
   'ChatGPT', // tarea · copiar · IA · preguntar · profesor · ensayo · OpenAI · prompt
-  'Repechaje', // Mundial · Australia · Nueva Zelanda · penales · Gallese · Selección · sufrir · Qatar
   'Resaca', // chela · agua · dolor de cabeza · domingo · caldo · Gatorade · mar · fiesta
   'Chicha', // morada · maíz · música · cumbia · de jora · carteles · Los Shapis · cultura
   'Salsa', // baile · Héctor Lavoe · pareja · ají · huancaína · tomate · ketchup · discoteca
@@ -265,7 +247,6 @@ export const WORDS: string[] = [
   // --- Pocas lecturas, pero llenas de pistas comunes ---
   'Velorio', // muerto · café · llanto · cajón · flores · misa · chisme · coronas
   'Pollada', // pollo · fiesta · vecinos · ticket · recaudar · cerveza · parlante · bingo
-  'Pichanga', // fútbol · amigos · losa · cancha · chela · gol · domingo · equipo
   'Fotocheck', // trabajo · foto · nombre · oficina · seguridad · colgar · cuello · empresa
   'Mandil', // colegio · blanco · laboratorio · cocina · profesora · manchas · delantal · bolsillo
   'Guachimán', // vigilante · caseta · noche · edificio · silbato · uniforme · puerta · seguridad
@@ -289,14 +270,14 @@ export const WORDS: string[] = [
   'Gamarra', // ropa · La Victoria · galerías · barato · textil · emprender · polos · ambulantes
   'Mozo', // restaurante · propina · mesa · carta · bandeja · pedido · cuenta · joven
   'Miss', // profesora · colegio · tarea · Miss Perú · belleza · corona · banda · concurso
-  'Delegado', // salón · aula · profesor · representante · votación · curso · grupo · WhatsApp
+  'Delegado', // salón · aula · profesor · representante · curso · grupo · WhatsApp · lista
   'Parcial', // examen · ciclo · mitad · nota · estudiar · jalar · final · parcialmente
   'Tesis', // título · asesor · jurado · sustentar · tesista · plagio · investigación · años
   'Jurado', // tesis · concurso · juez · tribunal · nota · calificar · Yo Soy · culpable
   'Borrador', // lápiz · goma · error · pizarra · versión · documento · correo · tiza
   'Corrector', // líquido · blanco · error · Word · ortografía · lapicero · profesor · examen
   'Tiza', // pizarra · profesor · polvo · blanca · colegio · billar · taco · rayuela
-  'Recreo', // colegio · kiosko · lonchera · patio · timbre · jugar · fútbol · descanso
+  'Recreo', // colegio · kiosko · lonchera · patio · timbre · jugar · descanso · amigos
   'Gratificación', // julio · diciembre · sueldo · bono · trabajo · Navidad · Fiestas Patrias · planilla
   'SUNAT', // impuestos · RUC · boleta · factura · multa · declarar · contador · deuda
   'Yape', // pago · celular · QR · BCP · Plin · transferir · bodega · "yapéame"
@@ -339,22 +320,18 @@ export const WORDS: string[] = [
   'Bitcoin', // dinero · cripto · inversión · estafa · digital · minar · millonario · Elon
   'Wifi', // internet · contraseña · señal · router · vecino · conectar · lento · inalámbrico
   'Pádel', // raqueta · pelota · paredes · cancha · moda · tenis · pareja · club
-  'Vóley', // red · pelota · saque · Matadoras · colegio · playa · Selección · mate
-  'Messi', // Argentina · Barcelona · Mundial · Pulga · Balón de Oro · Miami · Cristiano · 10
-  'Árbitro', // silbato · tarjeta · penal · ciego · robo · falta · VAR · línea
-  'Gol', // pelota · arco · red · grito · celebrar · Volkswagen · carro · golazo
-  'Arquero', // guantes · atajar · arco · penal · Gallese · flecha · Cupido · Robin Hood
+  'Vóley', // red · pelota · saque · Matadoras · colegio · playa · rodilleras · mate
   'Maratón', // correr · 42 km · medalla · zapatillas · series · Netflix · cansancio · carrera
   'Gimnasio', // pesas · músculos · proteína · espejo · entrenador · cardio · gym · sudor
   'Dieta', // lunes · ensalada · kilos · nutricionista · "estoy a dieta" · gimnasio · hambre · balanza
   'Magaly', // chisme · ampay · urracas · televisión · farándula · escándalo · "chibolo" · cámara escondida
   'Urraca', // ave · negra · Magaly · reportero · chisme · cámara · brillante · robar
-  'Concierto', // música · entradas · escenario · Estadio Nacional · fila · cantante · reventa · celular
+  'Concierto', // música · entradas · escenario · fila · cantante · reventa · celular · luces
   'Reventa', // entradas · concierto · caro · estafa · Teleticket · Joinnus · fila · revendedor
-  'Shakira', // Colombia · caderas · Piqué · "facturan" · Waka Waka · loba · Mundial · cantante
+  'Shakira', // Colombia · caderas · Piqué · "facturan" · Waka Waka · loba · cantante · Barranquilla
   'Marinera', // baile · pañuelo · Trujillo · caballo de paso · norteña · limeña · concurso · sombrero
   'Silla', // sentarse · mesa · ruedas · eléctrica · juego · plástico · respaldo · oficina
-  'Toalla', // baño · ducha · playa · secarse · "tirar la toalla" · box · rendirse · húmeda
+  'Toalla', // baño · ducha · playa · secarse · "tirar la toalla" · rendirse · húmeda · piscina
   'Olla', // cocina · olla común · presión · arroz · tapa · fuego · sopa · caliente
   'Cuchara', // sopa · cubierto · "meter la cuchara" · tenedor · cuchillo · opinar · cucharita · azúcar
   'Peluca', // pelo · calvo · disfraz · payaso · rubia · Halloween · cabeza · falsa
@@ -362,15 +339,14 @@ export const WORDS: string[] = [
   'Abogado', // juicio · juez · corte · derecho · cliente · diablo · terno · defender
   'Ingeniero', // inge · obra · casco · planos · matemáticas · universidad · construcción · calculadora
   'Albañil', // construcción · ladrillo · cemento · obra · piropo · casco · maestro de obra · almuerzo
-  'Capitán', // barco · equipo · brazalete · América · escudo · ancla · Garfio · piloto
+  'Capitán', // barco · ancla · Garfio · América · escudo · piloto · timón · tripulación
   'Mago', // varita · conejo · sombrero · trucos · magia · cartas · desaparecer · Harry Potter
-  'Circo', // payaso · carpa · malabares · elefante · trapecio · león · "esto es un circo" · Congreso
+  'Circo', // payaso · carpa · malabares · elefante · trapecio · león · "esto es un circo" · domador
   'Tinka', // lotería · millonario · números · sorteo · domingo · pozo · suerte · apuesta
   'Bingo', // cartón · números · premio · pollada · abuelita · gritar · sorteo · bolitas
   'UNO', // cartas · colores · +4 · gritar · reversa · amigos · número uno · primero
   'Monopolio', // dinero · casas · hoteles · cárcel · dados · juego · empresa · banco
   'Escondidas', // juego · contar · buscar · niños · esconderse · noche · pareja secreta · pillar
-  'FIFA', // videojuego · PlayStation · Mundial · corrupción · fútbol · Infantino · ranking · control
   'Rocoto', // picante · relleno · Arequipa · rojo · ají · cebolla · uchucuta · bravo
   'Tentación', // galleta · chocolate · pecado · dieta · comer · diablo · ceder · prohibido
   'Emoliente', // carrito · esquina · caliente · cebada · linaza · gripe · mañana · señora
@@ -385,13 +361,12 @@ export const WORDS: string[] = [
   'Bodega', // barrio · tía · fiado · chela · pan · vinos · almacén · esquina
   'Mesa Redonda', // mercado · Centro de Lima · Navidad · juguetes · rey Arturo · caballeros · reunión · gentío
   'Polvos Azules', // mercado · pirata · celulares · Centro de Lima · barato · películas · maquillaje · ropa
-  'Callao', // puerto · chalaco · aeropuerto · primer puerto · Sport Boys · La Punta · barrio · mar
+  'Callao', // puerto · chalaco · aeropuerto · primer puerto · La Punta · barrio · mar · ceviche
   'Arequipa', // Misti · rocoto · ciudad blanca · volcán · "república independiente" · chupe · queso helado · sillar
   'Chiclayo', // Papa · León · King Kong · arroz con pato · norte · Señor de Sipán · Lambayeque · calor
   'King Kong', // gorila · Nueva York · Empire State · dulce · manjar · Lambayeque · galleta · Godzilla
   'Inca Kola', // amarilla · gaseosa · Coca-Cola · chifa · sabor nacional · burbujas · peruana · pollo a la brasa
   'España', // conquista · Madrid · Barcelona · madre patria · ceceo · paella · flamenco · Real Madrid
-  'Trump', // Estados Unidos · presidente · muro · rubio · naranja · Twitter · elecciones · aranceles
   'Cóndor', // ave · Andes · Colca · "El cóndor pasa" · vuelo · negro · grande · carroña
   'Loro', // verde · hablar · repetir · pirata · plumas · jaula · hablador · papagayo
   'Gallina', // huevo · pollo · cobarde · caldo · corral · cacarear · plumas · gallo
