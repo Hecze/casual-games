@@ -301,7 +301,6 @@ export const WORDS: string[] = [
   'Facebook', // red social · tíos · Zuckerberg · like · perfil · amigos · Marketplace · cumpleaños
   'Bitcoin', // dinero · cripto · inversión · estafa · digital · minar · millonario · Elon
   'Wifi', // internet · contraseña · señal · router · vecino · conectar · lento · inalámbrico
-  'Pádel', // raqueta · pelota · paredes · cancha · moda · tenis · pareja · club
   'Vóley', // red · pelota · saque · Matadoras · colegio · playa · rodilleras · mate
   'Maratón', // correr · 42 km · medalla · zapatillas · series · Netflix · cansancio · carrera
   'Gimnasio', // pesas · músculos · proteína · espejo · entrenador · cardio · gym · sudor
