@@ -32,10 +32,6 @@ export const WORDS: string[] = [
   'Luna', // noche · estrellas · lobo · astronauta · llena · de miel · carro · vidrio
   'Cancha', // maíz · tostada · ceviche · salada · canchita · cine · chela · picar
   'Santo', // cumpleaños · torta · regalo · iglesia · Santa Rosa · vela · saludo · santito
-  'Sencillo', // monedas · cambio · cobrador · combi · fácil · simple · canción · humilde
-  'Vuelto', // cambio · cobrador · cajero · monedas · combi · regresar · "ya volví" · propina
-  'Boleta', // compra · tienda · RUC · notas · colegio · libreta · sueldo · pago
-  'Cono', // tránsito · naranja · pista · helado · barquillo · Cono Norte · Comas · triángulo
   'Carpeta', // colegio · salón · sentarse · mochila · archivo · computadora · documentos · PDF
   'Cartón', // caja · reciclaje · mudanza · título · universidad · graduación · diploma · huevos
   'Cartera', // mujer · bolso · plata · billetera · robo · maquillaje · llaves · celular
@@ -67,10 +63,6 @@ export const WORDS: string[] = [
   'Cachimbo', // universidad · nuevo · primer ciclo · novato · matrícula · pipa · tabaco · fiesta
   'Torpedo', // examen · copiar · plagio · papelito · submarino · guerra · misil · profe
   'Pensión', // universidad · pagar · mensualidad · jubilación · viejo · abuelo · alojamiento · cuarto
-  'Práctica', // prácticas · practicante · trabajo · calificada · examen · ensayo · entrenamiento · deporte
-  'Control', // remoto · televisor · canal · de lectura · examen · policía · videojuego · pilas
-  'Terma', // agua caliente · ducha · baño · invierno · gas · eléctrica · termales · piscina
-  'Grifo', // gasolina · carro · combustible · caño · agua · lavadero · cocina · grifero
   'Barra', // bar · trago · chocolate · gimnasio · pesas · cereal · metal · mostrador
   'Combi', // cobrador · pasaje · paradero · "al fondo hay sitio" · chofer · apretado · micro · ruta
 
@@ -240,7 +232,6 @@ export const WORDS: string[] = [
   // --- Pocas lecturas, pero llenas de pistas comunes ---
   'Velorio', // muerto · café · llanto · cajón · flores · misa · chisme · coronas
   'Pollada', // pollo · fiesta · vecinos · ticket · recaudar · cerveza · parlante · bingo
-  'Fotocheck', // trabajo · foto · nombre · oficina · seguridad · colgar · cuello · empresa
   'Mandil', // colegio · blanco · laboratorio · cocina · profesora · manchas · delantal · bolsillo
   'Guachimán', // vigilante · caseta · noche · edificio · silbato · uniforme · puerta · seguridad
   'Serenazgo', // seguridad · camioneta · distrito · municipalidad · sirena · vigilancia · cámaras · noche
@@ -271,10 +262,8 @@ export const WORDS: string[] = [
   'Corrector', // líquido · blanco · error · Word · ortografía · lapicero · profesor · examen
   'Tiza', // pizarra · profesor · polvo · blanca · colegio · billar · taco · rayuela
   'Recreo', // colegio · kiosko · lonchera · patio · timbre · jugar · descanso · amigos
-  'Gratificación', // julio · diciembre · sueldo · bono · trabajo · Navidad · Fiestas Patrias · planilla
   'SUNAT', // impuestos · RUC · boleta · factura · multa · declarar · contador · deuda
   'Yape', // pago · celular · QR · BCP · Plin · transferir · bodega · "yapéame"
-  'Brevete', // licencia · manejar · examen · carro · MTC · auto · comprado · puntos
   'Metropolitano', // bus · estación · tarjeta · lleno · expreso · apretado · carril · Lima
   'Huaico', // lluvia · barro · Chosica · piedras · río · desastre · carretera · verano
   'Mascarilla', // COVID · cara · pandemia · cubrir · belleza · crema · puntos negros · oxígeno
