@@ -21,8 +21,11 @@ const WORD_LIST = Array.from(new Set(WORDS));
 const ARM_DELAY_PASS = 800;
 const ARM_DELAY_REVEAL = 400;
 
-/** Siempre debe quedar más gente normal que impostores. */
-const maxImpostors = (players: number) => Math.max(1, Math.floor((players - 1) / 2));
+/** Entre 1 y 2 impostores, y siempre más gente normal que impostores
+ *  (con 3 o 4 jugadores solo cabe 1). */
+const maxImpostors = (players: number) => Math.min(2, Math.max(1, Math.floor((players - 1) / 2)));
+/** Por defecto: 1 impostor con menos de 6 jugadores, 2 desde 6. */
+const defaultImpostors = (players: number) => Math.min(maxImpostors(players), players < 6 ? 1 : 2);
 
 function randInt(n: number): number {
   const a = new Uint32Array(1);
@@ -54,7 +57,8 @@ export function mountGame(root: HTMLElement) {
 
   let phase: Phase = 'setup';
   let players = 4;
-  let impostors = 1;
+  let impostors = defaultImpostors(players);
+  let impostorsTouched = false; // si el usuario lo eligió a mano, se respeta
   let round: Round | null = null;
   let current = 0;
   let recheck = false; // alguien volvió a ver su palabra desde la pantalla final
@@ -136,22 +140,25 @@ export function mountGame(root: HTMLElement) {
     go('setup');
   }
 
+  function setPlayers(n: number) {
+    players = Math.min(MAX_PLAYERS, Math.max(MIN_PLAYERS, n));
+    impostors = impostorsTouched
+      ? Math.min(impostors, maxImpostors(players))
+      : defaultImpostors(players);
+    render();
+  }
+
   const actions: Record<string, (el: HTMLElement) => void> = {
-    'players-': () => {
-      players = Math.max(MIN_PLAYERS, players - 1);
-      impostors = Math.min(impostors, maxImpostors(players));
-      render();
-    },
-    'players+': () => {
-      players = Math.min(MAX_PLAYERS, players + 1);
-      render();
-    },
+    'players-': () => setPlayers(players - 1),
+    'players+': () => setPlayers(players + 1),
     'impostors-': () => {
       impostors = Math.max(1, impostors - 1);
+      impostorsTouched = true;
       render();
     },
     'impostors+': () => {
       impostors = Math.min(maxImpostors(players), impostors + 1);
+      impostorsTouched = true;
       render();
     },
     start,

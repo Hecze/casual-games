@@ -12,7 +12,7 @@ Sin login, sin cookies, sin base de datos, sin storage. Todo pasa en memoria en 
 
 ## Cómo funciona
 
-1. Eliges jugadores (3–20) e impostores (siempre menos que la mitad).
+1. Eliges jugadores (3–20) e impostores (1 o 2; por defecto 1 con menos de 6 jugadores y 2 desde 6; con 3 o 4 jugadores solo 1).
 2. "Ver palabra" → la persona ve su secreto → "Siguiente" lo oculta y pide pasar el celular.
 3. Al final dice quién empieza (al azar). "Nueva ronda" usa otra palabra.
 
