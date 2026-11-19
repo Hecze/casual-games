@@ -14,14 +14,13 @@ Sin login, sin cookies, sin base de datos, sin storage. Todo pasa en memoria en 
 
 1. Eliges jugadores (3–20) e impostores (1 o 2; por defecto 1 con menos de 6 jugadores y 2 desde 6; con 3 o 4 jugadores solo 1).
 2. "Ver palabra" → la persona ve su secreto → "Siguiente" lo oculta y pide pasar el celular.
-3. Al final dice quién empieza (al azar). "Nueva ronda" usa otra palabra.
+3. Al final dice quién empieza. "Nueva ronda" usa otra palabra; "Terminar partida" vuelve a los ajustes (que no se ven a mitad de partida).
 
 ## Casos borde cubiertos
 
 - **Doble toque**: "Ver palabra" se habilita 0,8 s después de aparecer, así quien termina no ve la palabra del siguiente.
 - **Impostor de reojo**: la tarjeta del impostor tiene el mismo color y tamaño que la de los demás.
 - **Pantalla apagada / cambio de app** con la palabra visible: se oculta sola.
-- **Alguien olvidó su palabra**: desde la pantalla final, elige su número y la vuelve a ver.
 - **Pantalla encendida** durante la ronda (Wake Lock, si el navegador lo soporta).
 - **Sin repetir** palabras ni dibujos hasta agotar la lista (mientras la pestaña siga abierta).
 - Sin zoom por doble toque, sin pull-to-refresh, sin selección de texto.

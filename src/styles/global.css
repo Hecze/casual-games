@@ -269,24 +269,6 @@ h1 {
   fill: #fff;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
-  gap: 10px;
-  width: 100%;
-}
-
-.grid button {
-  aspect-ratio: 1;
-  border-radius: 16px;
-  border: 1px solid var(--line);
-  background: var(--card);
-  color: var(--text);
-  font-size: 24px;
-  font-weight: 800;
-  cursor: pointer;
-}
-
 .fade-in {
   animation: fade 0.25s ease-out;
 }
@@ -436,4 +418,13 @@ h1 {
   font-size: 18px;
   padding: 18px 10px;
   white-space: nowrap;
+}
+
+.end-link {
+  align-self: center;
+  margin-top: 4px;
+}
+
+.end-link:disabled {
+  opacity: 0.35;
 }

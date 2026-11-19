@@ -3,7 +3,7 @@ import { DRAWINGS } from '../data/drawings';
 import { attachBoard, colorOf, type Stroke } from './board';
 
 type Mode = 'words' | 'drawings';
-type Phase = 'setup' | 'pass' | 'reveal' | 'done' | 'forgot' | 'draw' | 'final';
+type Phase = 'setup' | 'pass' | 'reveal' | 'done' | 'draw' | 'final';
 type Where = 'paper' | 'phone';
 
 interface Round {
@@ -20,6 +20,7 @@ const WORD_LIST = Array.from(new Set(WORDS));
 // toque en "Siguiente" no revele la palabra del jugador que viene.
 const ARM_DELAY_PASS = 800;
 const ARM_DELAY_REVEAL = 400;
+const ARM_DELAY_DONE = 600;
 
 /** Entre 1 y 2 impostores, y siempre más gente normal que impostores
  *  (con 3 o 4 jugadores solo cabe 1). */
@@ -78,7 +79,6 @@ export function mountGame(root: HTMLElement) {
   let impostorsTouched = false; // si el usuario lo eligió a mano, se respeta
   let round: Round | null = null;
   let current = 0;
-  let recheck = false; // alguien volvió a ver su palabra desde la pantalla final
   let armTimer: ReturnType<typeof setTimeout> | undefined;
 
   // Solo artista impostor: dónde se dibuja y el lienzo compartido.
@@ -129,7 +129,6 @@ export function mountGame(root: HTMLElement) {
     const imps = new Set(shuffled(players).slice(0, impostors));
     round = { secret: drawSecret(), impostors: imps, starter: pickStarter(players, imps) };
     current = 0;
-    recheck = false;
     strokes = [];
     turn = 0;
     drewThisTurn = false;
@@ -137,10 +136,7 @@ export function mountGame(root: HTMLElement) {
   }
 
   function next() {
-    if (recheck) {
-      recheck = false;
-      go('done');
-    } else if (current < players - 1) {
+    if (current < players - 1) {
       current++;
       go('pass');
     } else {
@@ -148,9 +144,10 @@ export function mountGame(root: HTMLElement) {
     }
   }
 
-  function exitToSetup() {
-    const midRound = phase === 'pass' || phase === 'reveal' || phase === 'draw';
-    if (midRound && !window.confirm('¿Terminar esta ronda?')) return;
+  // Los ajustes solo se ven al terminar la partida.
+  function endGame() {
+    const midRound = phase === 'pass' || phase === 'reveal';
+    if (midRound && !window.confirm('¿Terminar la partida?')) return;
     go('setup');
   }
 
@@ -178,9 +175,7 @@ export function mountGame(root: HTMLElement) {
     start,
     reveal: () => go('reveal'),
     next,
-    exit: exitToSetup,
-    forgot: () => go('forgot'),
-    cancelForgot: () => go('done'),
+    end: endGame,
     'where-paper': () => {
       where = 'paper';
       render();
@@ -204,11 +199,6 @@ export function mountGame(root: HTMLElement) {
       turn++;
       drewThisTurn = false;
       render();
-    },
-    pick: (el) => {
-      current = Number(el.dataset.player);
-      recheck = true;
-      go('pass');
     },
   };
 
@@ -238,11 +228,13 @@ export function mountGame(root: HTMLElement) {
       </div>
     </div>`;
 
-  const topbar = (left: string, action: string, label: string) => `
+  const topbar = (left: string, action?: string, label?: string) => `
     <div class="topbar">
       <span class="player-tag">${left}</span>
-      <button class="link" data-action="${action}">${label}</button>
+      ${action ? `<button class="link" data-action="${action}">${label}</button>` : ''}
     </div>`;
+
+  const endLink = `<button class="link end-link" data-action="end" data-gate disabled>Terminar partida</button>`;
 
   const drawingBox = (index: number | null) =>
     index === null
@@ -280,15 +272,15 @@ export function mountGame(root: HTMLElement) {
     const n = current + 1;
 
     if (phase === 'pass') {
-      const fresh = (current === 0 && !recheck) || recheck;
+      const fresh = current === 0;
       return `
-        ${topbar(recheck ? 'Volver a ver' : `Jugador ${n} de ${players}`, 'exit', 'Salir')}
+        ${topbar(`Jugador ${n} de ${players}`, 'end', 'Terminar')}
         <div class="center">
           <p class="muted big-text">${fresh ? 'Que tome el celular el' : 'Pásale el celular al'}</p>
           <div class="big-number">${n}</div>
           <p class="muted big-text">jugador ${n}</p>
         </div>
-        <div class="actions"><button class="btn" data-action="reveal" disabled>Ver palabra</button></div>`;
+        <div class="actions"><button class="btn" data-action="reveal" data-gate disabled>Ver palabra</button></div>`;
     }
 
     if (phase === 'reveal') {
@@ -300,9 +292,9 @@ export function mountGame(root: HTMLElement) {
         : mode === 'words'
           ? WORD_LIST[round.secret]
           : DRAWINGS[round.secret].name;
-      const last = recheck || current === players - 1;
+      const last = current === players - 1;
       return `
-        ${topbar(`Jugador ${n}`, 'exit', 'Salir')}
+        ${topbar(`Jugador ${n}`)}
         <div class="center">
           <div class="secret">
             ${mode === 'drawings' ? drawingBox(imp ? null : round.secret) : ''}
@@ -310,26 +302,13 @@ export function mountGame(root: HTMLElement) {
             <div class="word">${esc(word)}</div>
           </div>
         </div>
-        <div class="actions"><button class="btn secondary" data-action="next" disabled>${last ? 'Listo' : 'Siguiente'}</button></div>`;
-    }
-
-    if (phase === 'forgot') {
-      const buttons = Array.from(
-        { length: players },
-        (_, i) => `<button data-action="pick" data-player="${i}">${i + 1}</button>`,
-      ).join('');
-      return `
-        ${topbar('Volver a ver', 'cancelForgot', 'Cancelar')}
-        <div class="center">
-          <h1 style="font-size:26px">¿Qué jugador eres?</h1>
-          <div class="grid">${buttons}</div>
-        </div>`;
+        <div class="actions"><button class="btn secondary" data-action="next" data-gate disabled>${last ? 'Listo' : 'Siguiente'}</button></div>`;
     }
 
     if (phase === 'draw') {
       const p = drawer();
       return `
-        ${topbar(`Vuelta ${Math.floor(turn / players) + 1}`, 'finish', 'Terminar')}
+        ${topbar(`Vuelta ${Math.floor(turn / players) + 1}`, 'finish', 'Terminar dibujo')}
         <div class="turn">
           <i style="background:${colorOf(p)}"></i>
           <div><strong>Turno del jugador ${p + 1}</strong><span class="muted">Un solo trazo</span></div>
@@ -343,41 +322,44 @@ export function mountGame(root: HTMLElement) {
 
     if (phase === 'final') {
       return `
-        ${topbar('Dibujo terminado', 'exit', 'Ajustes')}
+        ${topbar('Dibujo terminado')}
         ${legend()}
         <div class="board-wrap"><canvas class="board" aria-label="Dibujo final"></canvas></div>
-        <div class="actions row">
-          <button class="btn secondary" data-action="keepDrawing">Seguir</button>
-          <button class="btn" data-action="start">Nueva ronda</button>
+        <div class="actions">
+          <div class="actions row">
+            <button class="btn secondary" data-action="keepDrawing">Seguir</button>
+            <button class="btn" data-action="start">Nueva ronda</button>
+          </div>
+          ${endLink}
         </div>`;
     }
 
     // done
     if (mode === 'drawings' && where === 'phone') {
       return `
-      ${topbar(`${impostors} ${impostors === 1 ? 'impostor' : 'impostores'} · ${players} jugadores`, 'exit', 'Ajustes')}
+      ${topbar(`${impostors} ${impostors === 1 ? 'impostor' : 'impostores'} · ${players} jugadores`)}
       <div class="center">
         <p class="muted big-text">¡Todos listos! Empieza el</p>
         <div class="big-number">${round.starter + 1}</div>
         <p class="muted big-text">jugador ${round.starter + 1}</p>
       </div>
       <div class="actions">
-        <button class="btn" data-action="startDraw">Empezar a dibujar</button>
-        <button class="btn secondary" data-action="start">Nueva ronda</button>
-        <button class="btn secondary" data-action="forgot">Alguien olvidó su palabra</button>
+        <button class="btn" data-action="startDraw" data-gate disabled>Empezar a dibujar</button>
+        <button class="btn secondary" data-action="start" data-gate disabled>Nueva ronda</button>
+        ${endLink}
       </div>`;
     }
 
     return `
-      ${topbar(`${impostors} ${impostors === 1 ? 'impostor' : 'impostores'} · ${players} jugadores`, 'exit', 'Ajustes')}
+      ${topbar(`${impostors} ${impostors === 1 ? 'impostor' : 'impostores'} · ${players} jugadores`)}
       <div class="center">
         <p class="muted big-text">¡Todos listos! Empieza el</p>
         <div class="big-number">${round.starter + 1}</div>
         <p class="muted big-text">jugador ${round.starter + 1}</p>
       </div>
       <div class="actions">
-        <button class="btn" data-action="start">Nueva ronda</button>
-        <button class="btn secondary" data-action="forgot">Alguien olvidó su palabra</button>
+        <button class="btn" data-action="start" data-gate disabled>Nueva ronda</button>
+        ${endLink}
       </div>`;
   }
 
@@ -410,12 +392,12 @@ export function mountGame(root: HTMLElement) {
     }
 
     clearTimeout(armTimer);
-    const gated = root.querySelector<HTMLButtonElement>('[data-action="reveal"], [data-action="next"]');
-    if (gated) {
-      armTimer = setTimeout(
-        () => (gated.disabled = false),
-        phase === 'pass' ? ARM_DELAY_PASS : ARM_DELAY_REVEAL,
-      );
+    // Botones con data-gate: se habilitan tras un instante (anti doble toque).
+    const gated = root.querySelectorAll<HTMLButtonElement>('[data-gate]');
+    if (gated.length) {
+      const delay =
+        phase === 'pass' ? ARM_DELAY_PASS : phase === 'reveal' ? ARM_DELAY_REVEAL : ARM_DELAY_DONE;
+      armTimer = setTimeout(() => gated.forEach((b) => (b.disabled = false)), delay);
     }
     if (animate) window.scrollTo(0, 0);
   }
