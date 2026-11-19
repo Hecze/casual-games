@@ -1,8 +1,10 @@
 import { WORDS } from '../data/words';
 import { DRAWINGS } from '../data/drawings';
+import { attachBoard, colorOf, type Stroke } from './board';
 
 type Mode = 'words' | 'drawings';
-type Phase = 'setup' | 'pass' | 'reveal' | 'done' | 'forgot';
+type Phase = 'setup' | 'pass' | 'reveal' | 'done' | 'forgot' | 'draw' | 'final';
+type Where = 'paper' | 'phone';
 
 interface Round {
   secret: number;
@@ -58,6 +60,14 @@ export function mountGame(root: HTMLElement) {
   let recheck = false; // alguien volvió a ver su palabra desde la pantalla final
   let armTimer: ReturnType<typeof setTimeout> | undefined;
 
+  // Solo artista impostor: dónde se dibuja y el lienzo compartido.
+  let where: Where = 'paper';
+  let strokes: Stroke[] = [];
+  let turn = 0; // turnos de dibujo jugados (incluye vueltas)
+  let drewThisTurn = false;
+  let board: ReturnType<typeof attachBoard> | null = null;
+  const drawer = () => (round ? (round.starter + turn) % players : 0);
+
   function drawSecret(): number {
     if (deck.length === 0) {
       deck = shuffled(poolSize);
@@ -102,6 +112,9 @@ export function mountGame(root: HTMLElement) {
     };
     current = 0;
     recheck = false;
+    strokes = [];
+    turn = 0;
+    drewThisTurn = false;
     go('pass');
   }
 
@@ -118,7 +131,7 @@ export function mountGame(root: HTMLElement) {
   }
 
   function exitToSetup() {
-    const midRound = phase === 'pass' || phase === 'reveal';
+    const midRound = phase === 'pass' || phase === 'reveal' || phase === 'draw';
     if (midRound && !window.confirm('¿Terminar esta ronda?')) return;
     go('setup');
   }
@@ -147,6 +160,30 @@ export function mountGame(root: HTMLElement) {
     exit: exitToSetup,
     forgot: () => go('forgot'),
     cancelForgot: () => go('done'),
+    'where-paper': () => {
+      where = 'paper';
+      render();
+    },
+    'where-phone': () => {
+      where = 'phone';
+      render();
+    },
+    startDraw: () => go('draw'),
+    keepDrawing: () => go('draw'),
+    finish: () => go('final'),
+    undo: () => {
+      if (!drewThisTurn) return;
+      strokes.pop();
+      drewThisTurn = false;
+      board?.redraw();
+      syncTurnButtons();
+    },
+    nextTurn: () => {
+      if (!drewThisTurn) return;
+      turn++;
+      drewThisTurn = false;
+      render();
+    },
     pick: (el) => {
       current = Number(el.dataset.player);
       recheck = true;
@@ -191,6 +228,21 @@ export function mountGame(root: HTMLElement) {
       ? `<div class="drawing" aria-label="Sin dibujo">?</div>`
       : `<div class="drawing"><svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${DRAWINGS[index].svg}</svg></div>`;
 
+  const whereToggle = () => `
+    <div class="field column">
+      <label>Dibujan en</label>
+      <div class="segmented">
+        <button type="button" data-action="where-paper" aria-pressed="${where === 'paper'}">Papel o pizarra</button>
+        <button type="button" data-action="where-phone" aria-pressed="${where === 'phone'}">Este celular</button>
+      </div>
+    </div>`;
+
+  const legend = () =>
+    `<div class="legend">${Array.from(
+      { length: players },
+      (_, i) => `<span><i style="background:${colorOf(i)}"></i>${i + 1}</span>`,
+    ).join('')}</div>`;
+
   function screen(): string {
     if (phase === 'setup' || !round) {
       return `
@@ -199,6 +251,7 @@ export function mountGame(root: HTMLElement) {
           <h1>${esc(title)}</h1>
           ${stepper('Jugadores', 'players', players, MIN_PLAYERS, MAX_PLAYERS)}
           ${stepper('Impostores', 'impostors', impostors, 1, maxImpostors(players))}
+          ${mode === 'drawings' ? whereToggle() : ''}
         </div>
         <div class="actions"><button class="btn" data-action="start">Empezar</button></div>`;
     }
@@ -252,7 +305,48 @@ export function mountGame(root: HTMLElement) {
         </div>`;
     }
 
+    if (phase === 'draw') {
+      const p = drawer();
+      return `
+        ${topbar(`Vuelta ${Math.floor(turn / players) + 1}`, 'finish', 'Terminar')}
+        <div class="turn">
+          <i style="background:${colorOf(p)}"></i>
+          <div><strong>Turno del jugador ${p + 1}</strong><span class="muted">Un solo trazo</span></div>
+        </div>
+        <div class="board-wrap"><canvas class="board" aria-label="Lienzo"></canvas></div>
+        <div class="actions row">
+          <button class="btn secondary" data-action="undo" disabled>Deshacer</button>
+          <button class="btn" data-action="nextTurn" disabled>Siguiente</button>
+        </div>`;
+    }
+
+    if (phase === 'final') {
+      return `
+        ${topbar('Dibujo terminado', 'exit', 'Ajustes')}
+        ${legend()}
+        <div class="board-wrap"><canvas class="board" aria-label="Dibujo final"></canvas></div>
+        <div class="actions row">
+          <button class="btn secondary" data-action="keepDrawing">Seguir</button>
+          <button class="btn" data-action="start">Nueva ronda</button>
+        </div>`;
+    }
+
     // done
+    if (mode === 'drawings' && where === 'phone') {
+      return `
+      ${topbar(`${impostors} ${impostors === 1 ? 'impostor' : 'impostores'} · ${players} jugadores`, 'exit', 'Ajustes')}
+      <div class="center">
+        <p class="muted big-text">¡Todos listos! Empieza el</p>
+        <div class="big-number">${round.starter + 1}</div>
+        <p class="muted big-text">jugador ${round.starter + 1}</p>
+      </div>
+      <div class="actions">
+        <button class="btn" data-action="startDraw">Empezar a dibujar</button>
+        <button class="btn secondary" data-action="start">Nueva ronda</button>
+        <button class="btn secondary" data-action="forgot">Alguien olvidó su palabra</button>
+      </div>`;
+    }
+
     return `
       ${topbar(`${impostors} ${impostors === 1 ? 'impostor' : 'impostores'} · ${players} jugadores`, 'exit', 'Ajustes')}
       <div class="center">
@@ -266,13 +360,33 @@ export function mountGame(root: HTMLElement) {
       </div>`;
   }
 
+  function syncTurnButtons() {
+    root.querySelectorAll<HTMLButtonElement>('[data-action="undo"], [data-action="nextTurn"]').forEach(
+      (b) => (b.disabled = !drewThisTurn),
+    );
+  }
+
   let lastKey = '';
   function render() {
     // Los cambios de pantalla se animan; los toques en los +/− no.
-    const key = `${phase}-${current}`;
+    const key = phase === 'draw' ? 'draw' : `${phase}-${current}`;
     const animate = key !== lastKey;
     lastKey = key;
+    board?.destroy();
+    board = null;
     root.innerHTML = `<main class="screen${animate ? ' fade-in' : ''}">${screen()}</main>`;
+
+    const canvas = root.querySelector<HTMLCanvasElement>('canvas.board');
+    if (canvas) {
+      board = attachBoard(canvas, strokes, {
+        canDraw: () => phase === 'draw' && !drewThisTurn,
+        player: drawer,
+        onStroke: () => {
+          drewThisTurn = true;
+          syncTurnButtons();
+        },
+      });
+    }
 
     clearTimeout(armTimer);
     const gated = root.querySelector<HTMLButtonElement>('[data-action="reveal"], [data-action="next"]');

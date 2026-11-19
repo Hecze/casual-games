@@ -4,6 +4,9 @@ Ayuda digital para jugar en persona con amigos, pasando **un solo celular** en r
 
 - **El impostor** (`/impostor`): todos ven la misma palabra, el impostor ve "IMPOSTOR".
 - **El artista impostor** (`/impostor-artista`): todos ven qué dibujar (con un dibujo de referencia de pocos trazos), el impostor no.
+  Se elige dónde dibujan: **papel o pizarra** (todo fuera del celular) o **este celular** (lienzo por turnos: un trazo por jugador, cada uno con su color, con deshacer y leyenda de colores al final).
+
+Pensado solo para celular en **vertical**; si se gira, pide volver a vertical.
 
 Sin login, sin cookies, sin base de datos, sin storage. Todo pasa en memoria en el navegador.
 
