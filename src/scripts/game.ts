@@ -144,7 +144,7 @@ export function mountGame(root: HTMLElement) {
     }
   }
 
-  // Los ajustes solo se ven al terminar la partida.
+  // Los ajustes solo se ven al terminar la ronda.
   function endGame() {
     go('setup');
   }
@@ -232,7 +232,9 @@ export function mountGame(root: HTMLElement) {
       ${action ? `<button class="link" data-action="${action}">${label}</button>` : ''}
     </div>`;
 
-  const endLink = `<button class="link end-link" data-action="end" data-gate disabled>Terminar partida</button>`;
+  // Al terminar la ronda se vuelve a los ajustes (con la configuración ya puesta).
+  const endButton = (cls = 'btn') =>
+    `<button class="${cls}" data-action="end" data-gate disabled>Terminar ronda</button>`;
 
   const drawingBox = (index: number | null) =>
     index === null
@@ -323,12 +325,9 @@ export function mountGame(root: HTMLElement) {
         ${topbar('Dibujo terminado')}
         ${legend()}
         <div class="board-wrap"><canvas class="board" aria-label="Dibujo final"></canvas></div>
-        <div class="actions">
-          <div class="actions row">
-            <button class="btn secondary" data-action="keepDrawing">Seguir</button>
-            <button class="btn" data-action="start">Nueva ronda</button>
-          </div>
-          ${endLink}
+        <div class="actions row">
+          <button class="btn secondary" data-action="keepDrawing">Seguir</button>
+          ${endButton()}
         </div>`;
     }
 
@@ -343,8 +342,7 @@ export function mountGame(root: HTMLElement) {
       </div>
       <div class="actions">
         <button class="btn" data-action="startDraw" data-gate disabled>Empezar a dibujar</button>
-        <button class="btn secondary" data-action="start" data-gate disabled>Nueva ronda</button>
-        ${endLink}
+        ${endButton('btn secondary')}
       </div>`;
     }
 
@@ -356,8 +354,7 @@ export function mountGame(root: HTMLElement) {
         <p class="muted big-text">jugador ${round.starter + 1}</p>
       </div>
       <div class="actions">
-        <button class="btn" data-action="start" data-gate disabled>Nueva ronda</button>
-        ${endLink}
+        ${endButton()}
       </div>`;
   }
 

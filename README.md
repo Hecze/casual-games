@@ -14,7 +14,7 @@ Sin login, sin cookies, sin base de datos, sin storage. Todo pasa en memoria en 
 
 1. Eliges jugadores (3–20) e impostores (1 o 2; por defecto 1 con menos de 6 jugadores y 2 desde 6; con 3 o 4 jugadores solo 1).
 2. "Ver palabra" → la persona ve su secreto → "Siguiente" lo oculta y pide pasar el celular.
-3. Al final dice quién empieza. "Nueva ronda" usa otra palabra; "Terminar partida" vuelve a los ajustes (que no se ven a mitad de partida).
+3. Al final dice quién empieza. "Terminar ronda" vuelve a los ajustes (con la misma configuración) y "Empezar" reparte otra palabra.
 
 ## Casos borde cubiertos
 
