@@ -146,8 +146,6 @@ export function mountGame(root: HTMLElement) {
 
   // Los ajustes solo se ven al terminar la partida.
   function endGame() {
-    const midRound = phase === 'pass' || phase === 'reveal';
-    if (midRound && !window.confirm('¿Terminar la partida?')) return;
     go('setup');
   }
 
@@ -274,7 +272,7 @@ export function mountGame(root: HTMLElement) {
     if (phase === 'pass') {
       const fresh = current === 0;
       return `
-        ${topbar(`Jugador ${n} de ${players}`, 'end', 'Terminar')}
+        ${topbar(`Jugador ${n} de ${players}`)}
         <div class="center">
           <p class="muted big-text">${fresh ? 'Que tome el celular el' : 'Pásale el celular al'}</p>
           <div class="big-number">${n}</div>
