@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Juegos en persona">
+  <main class="screen">
+    <div class="center" style="align-items: stretch; text-align: left">
+      <div>
+        <h1>Juegos en persona</h1>
+        <p class="muted" style="margin-top: 8px">Un solo celular. Pásalo en ronda.</p>
+      </div>
+      <nav class="games">
+        <a href="/impostor" class="game-card">
+          <span class="emoji" aria-hidden="true">🕵️</span>
+          <div>
+            <h2>El impostor</h2>
+            <p class="muted">Todos saben la palabra… menos uno.</p>
+          </div>
+        </a>
+        <a href="/impostor-artista" class="game-card">
+          <span class="emoji" aria-hidden="true">🎨</span>
+          <div>
+            <h2>El artista impostor</h2>
+            <p class="muted">Todos saben qué dibujar… menos uno.</p>
+          </div>
+        </a>
+      </nav>
+    </div>
+  </main>
+</Base>

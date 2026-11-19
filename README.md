@@ -25,8 +25,8 @@ Sin login, sin cookies, sin base de datos, sin storage. Todo pasa en memoria en 
 
 ## Editar contenido
 
-- Palabras: `data/words.ts`
-- Dibujos: `data/drawings.ts` (SVG de 100×100, solo trazos)
+- Palabras: `src/data/words.ts`
+- Dibujos: `src/data/drawings.ts` (SVG de 100×100, solo trazos)
 
 ## Desarrollo
 
@@ -35,4 +35,5 @@ npm install
 npm run dev
 ```
 
-`npm run build` genera un sitio estático en `out/` (`output: 'export'`). En Vercel se despliega tal cual, sin configuración.
+Hecho con [Astro](https://astro.build): sitio estático, sin framework en el cliente (~24 KB de JS en total).
+`npm run build` genera `dist/`. En Vercel se importa el repo y se despliega tal cual, sin configuración.

@@ -1,0 +1,21 @@
+---
+interface Props {
+  mode: 'words' | 'drawings';
+  title: string;
+}
+const { mode, title } = Astro.props;
+---
+
+<!-- El script pinta las pantallas aquí. Lo de adentro es la pantalla inicial
+     renderizada en el servidor para que no haya parpadeo al cargar. -->
+<div id="game" data-mode={mode} data-title={title}>
+  <main class="screen">
+    <div class="topbar"><a href="/" class="link">← Juegos</a></div>
+    <div class="center"><h1>{title}</h1></div>
+  </main>
+</div>
+
+<script>
+  import { mountGame } from '../scripts/game';
+  mountGame(document.getElementById('game')!);
+</script>
