@@ -11,6 +11,7 @@
 //     huancaína", "Machu Picchu", "Lomo saltado"): la primera pista la regala.
 //  5. Nada que pueda terminar en pelea de verdad: sin políticos con nombre
 //     propio, tragedias recientes, crimen organizado ni temas raciales.
+//  6. El doble sentido nunca puede ser sexual.
 //
 // Se evaluaron ~600 candidatas. Se quedaron solo las de los dos niveles más
 // altos. Algunas descartadas y por qué:
@@ -37,7 +38,7 @@ const TOP: string[] = [
   'Caries', // la de los dientes · el gato del grupo
   'Banco', // plata · asiento del parque · banco de peces
   'Gato', // mascota · herramienta del auto · tres en raya · #
-  'Cola', // fila · rabo · gaseosa · trasero
+  'Cola', // fila · rabo · gaseosa · pegamento
   'Pila', // batería · montón · "ponte pilas"
   'Hoja', // árbol · papel · hoja de coca · cuchilla
   'Planta', // vegetal · planta del pie · fábrica · piso
@@ -86,8 +87,7 @@ const TOP: string[] = [
   'Rata', // animal · tacaño · ladrón
   'Burro', // animal · persona bruta · juego de cartas
   'Serpiente', // animal · traidor · Adán y Eva
-  'Pulpo', // animal · el de manos largas · Paul el pulpo
-  'Conejo', // Pascua · Bad Bunny · Playboy · truco de mago
+  'Conejo', // Pascua · Bad Bunny · truco de mago
   'Paloma', // paz · "rata con alas" · nombre
   'Murciélago', // animal · Batman · origen del COVID
   'Perro', // mascota · infiel · hot dog
@@ -99,7 +99,7 @@ const TOP: string[] = [
   'Metro', // tren · unidad de medida
   'Tráfico', // autos · de drogas · de influencias
   'Final', // examen final · final de fútbol · final de serie
-  'Copa', // trofeo · de vino · del brasier
+  'Copa', // trofeo · de vino · Copa América
   'Penal', // fútbol · derecho penal · cárcel
   'Clásico', // U vs Alianza · Real vs Barça · música clásica · auto clásico
   'Cristal', // vidrio · Sporting Cristal · cerveza
@@ -146,7 +146,7 @@ const TOP: string[] = [
   'Cusqueña', // cerveza · mujer de Cusco
   'King Kong', // dulce de Lambayeque · gorila
   'Suspiro a la limeña', // postre · suspiro de amor
-  'Leche de tigre', // ceviche · cura de la resaca · "afrodisíaco"
+  'Leche de tigre', // ceviche · cura de la resaca · el Tigre Gareca
   'Barril', // el Chavo · cerveza · petróleo
   'Merlina', // la serie · miércoles · la de los Locos Addams
 
@@ -159,14 +159,10 @@ const TOP: string[] = [
   'Pepa', // semilla · persona guapa · pastilla
   'Choro', // mejillón · ladrón
   'Chapa', // apodo · tapa · cerradura · besar
-  'Huevo', // comida · flojera · lo otro
-  'Leche', // bebida · suerte
   'Bola', // pelota · rumor · montón de gente
   'Jalar', // desaprobar · llevar a alguien en carro · tirar
-  'Paja', // heno · bacán · lo otro
   'Chancho', // cerdo · colecta · gordito
   'Lenteja', // legumbre · alguien lento
-  'Hostal', // alojamiento · el otro uso
   'Azotea', // techo con fierros · "mal de la azotea"
   'Chancla', // sandalia · arma de mamá
   'Huachafo', // cursi · polémica sobre quién lo es
@@ -181,7 +177,6 @@ const TOP: string[] = [
   'Pasas', // en el panetón · en el arroz · ¿por qué?
   'Sangrecita', // hierro · asco
   'Anticucho', // delicia · "es corazón"
-  'Maca', // superalimento · "afrodisíaco"
   'Cuy', // mascota · plato
   'Toro', // animal · corridas · Tauro
   'Matrimonio', // amor eterno · castigo
@@ -250,7 +245,7 @@ const GOOD: string[] = [
   'Huaico', // desastre · avalancha de gente
   'Mascarilla', // COVID · belleza
   'Cuarentena', // pandemia · encierro
-  'Pastilla', // medicina · anticonceptiva
+  'Pastilla', // medicina · "tómate una pastilla" (cálmate)
   'Dentista', // salud · miedo
   'Brackets', // dientes · adolescencia
   'Muela del juicio', // diente · sabiduría
@@ -277,7 +272,6 @@ const GOOD: string[] = [
   'Piñata', // fiesta infantil · golpes
   'Cigüeña', // ave · los bebés
   'Luna de miel', // viaje · romance
-  'Despedida de soltero', // fiesta · "lo que pasa ahí se queda ahí"
   'Serenata', // romance · vergüenza
   'Celos', // amor · tóxico
   'Cuñado', // familiar · "cuñao"
