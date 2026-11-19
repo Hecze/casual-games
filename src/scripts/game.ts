@@ -42,6 +42,23 @@ function shuffled(n: number): number[] {
   return arr;
 }
 
+// Que un impostor empiece es muy poco probable (no imposible, para que
+// "empezó, entonces no es impostor" no sea una certeza): peso 1 vs 10.
+const STARTER_WEIGHT_NORMAL = 10;
+const STARTER_WEIGHT_IMPOSTOR = 1;
+
+function pickStarter(players: number, imps: Set<number>): number {
+  const w = (i: number) => (imps.has(i) ? STARTER_WEIGHT_IMPOSTOR : STARTER_WEIGHT_NORMAL);
+  let total = 0;
+  for (let i = 0; i < players; i++) total += w(i);
+  let r = randInt(total);
+  for (let i = 0; i < players; i++) {
+    r -= w(i);
+    if (r < 0) return i;
+  }
+  return 0;
+}
+
 const esc = (s: string) =>
   s.replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
 
@@ -109,11 +126,8 @@ export function mountGame(root: HTMLElement) {
 
   function start() {
     impostors = Math.min(impostors, maxImpostors(players));
-    round = {
-      secret: drawSecret(),
-      impostors: new Set(shuffled(players).slice(0, impostors)),
-      starter: randInt(players),
-    };
+    const imps = new Set(shuffled(players).slice(0, impostors));
+    round = { secret: drawSecret(), impostors: imps, starter: pickStarter(players, imps) };
     current = 0;
     recheck = false;
     strokes = [];
