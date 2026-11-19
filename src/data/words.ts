@@ -35,18 +35,10 @@ export const WORDS: string[] = [
   'Sencillo', // monedas · cambio · cobrador · combi · fácil · simple · canción · humilde
   'Vuelto', // cambio · cobrador · cajero · monedas · combi · regresar · "ya volví" · propina
   'Boleta', // compra · tienda · RUC · notas · colegio · libreta · sueldo · pago
-  'Pasaje', // combi · cobrador · medio pasaje · avión · viaje · aeropuerto · calle · estudiante
-  'Paradero', // combi · bajar · esquina · "baja" · micro · esperar · carro · desconocido
   'Cono', // tránsito · naranja · pista · helado · barquillo · Cono Norte · Comas · triángulo
-  'Papeleta', // multa · tránsito · policía · carro · grúa · brevete · puntos · pagar
   'Carpeta', // colegio · salón · sentarse · mochila · archivo · computadora · documentos · PDF
-  'Plumón', // pizarra · colores · marcador · escribir · plumas · almohada · casaca · edredón
   'Cartón', // caja · reciclaje · mudanza · título · universidad · graduación · diploma · huevos
-  'Once', // nota · aprobado · jalado · veinte · examen · número · hora · libreta
-  'Media', // pie · calcetín · zapato · lavar · mitad · promedio · nota · hora
   'Cartera', // mujer · bolso · plata · billetera · robo · maquillaje · llaves · celular
-  'Vara', // palo · árbol · contactos · recomendación · trabajo · favor · amigo · conocido
-  'Argolla', // anillo · matrimonio · oro · grupo · amigos · cerrado · exclusivo · arete
   'Salado', // sal · mar · papitas · comida · mala suerte · piña · "qué salado" · agua
   'Piña', // fruta · pizza · tropical · jugo · mala suerte · "qué piña" · Bob Esponja · ácida
   'Palta', // verde · pan · guacamole · ensalada · vergüenza · roche · "qué palta" · pepa
@@ -184,6 +176,7 @@ export const WORDS: string[] = [
   'León', // rey · selva · melena · rugir · Papa · Simba · Leo · zoológico
   'Tigre', // rayas · selva · leche de tigre · ceviche · Winnie Pooh · naranja · zoológico · rugir
   'Pulga', // perro · picar · rascarse · chiquito · saltar · mercado de pulgas · gato · antipulgas
+  'Burrito', // mexicano · tortilla · frijoles · burro chiquito · Shrek · "mi burrito sabanero" · Navidad · villancico
   'Burro', // orejas · Shrek · tonto · bruto · carga · juego de cartas · cola · terco
   'Serpiente', // veneno · cobra · Adán · Eva · manzana · traidor · víbora · lengua
   'Conejo', // zanahoria · orejas · Pascua · huevos · mago · sombrero · Bad Bunny · Bugs Bunny
